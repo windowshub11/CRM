@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+	<style>* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+
+body {
+	background: #f8f6ee;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 270px;
+	height: 100vh;
+	background: #fff;
+	border-right: 1px solid #e5e7eb;
+	overflow-y: auto;
+	z-index: 1000;
+}
+
+/* Logo */
+.logo{
+	display:flex;
+	align-items:center;
+	gap:10px;
+	padding:25px;
+	font-size:22px;
+	font-weight:600;
+	color:#1565d8;
+}
+
+.logo i{
+	font-size:24px;
+}
+
+/* Profile */
+.profile{
+	display:flex;
+	align-items:center;
+	gap:15px;
+	padding:20px;
+	border-top:1px solid #eee;
+	border-bottom:1px solid #eee;
+}
+
+.profile-icon{
+	width:45px;
+	height:45px;
+	border-radius:50%;
+	background:#1565d8;
+	color:#fff;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	font-size:18px;
+	font-weight:600;
+}
+
+.profile-info h3{
+	font-size:15px;
+}
+
+.profile-info p{
+	color:#777;
+	font-size:13px;
+}
+
+/* Menu */
+.menu{
+	list-style:none;
+	padding:18px;
+}
+
+.menu li{
+	margin-bottom:6px;
+}
+
+.menu li a{
+	text-decoration:none;
+	display:flex;
+	align-items:center;
+	gap:14px;
+	color:#555;
+	padding:13px 15px;
+	border-radius:10px;
+	transition:.3s;
+	font-size:15px;
+}
+
+.menu li a i{
+	width:22px;
+	text-align:center;
+	font-size:17px;
+}
+
+.menu li a:hover{
+	background:#edf4ff;
+	color:#1565d8;
+}
+
+.menu li.active a{
+	background:#1565d8;
+	color:#fff;
+	box-shadow:0 8px 18px rgba(21,101,216,.25);
+}
+
+/* ================= MAIN CONTENT SHIFT ================= */
+
+.main-content{
+	margin-left:270px;
+	padding:20px;
+}
+
+/* ================= YOUR ORIGINAL CSS ================= */
+
+.container {
+	max-width: 1400px;
+	margin: auto;
+}
+
+.header h1 {
+	font-size: 28px;
+	color: #222;
+}
+
+.header p {
+	color: #666;
+	margin-top: 5px;
+}
+
+.stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 15px;
+	margin-top: 25px;
+}
+
+.card {
+	background: #fff;
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+	font-size: 30px;
+	color: #222;
+	margin-bottom: 10px;
+}
+
+.card p {
+	color: #777;
+	font-size: 14px;
+}
+
+.section-title {
+	margin: 30px 0 15px;
+	color: #333;
+}
+
+.actions {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 15px;
+}
+
+.btn {
+	background: #0d6efd;
+	color: white;
+	border: none;
+	width: 100%;
+	height: 65px;
+	border-radius: 10px;
+	font-size: 15px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.btn:hover {
+	transform: translateY(-2px);
+}
+
+.orange {
+	background: #ff8c00;
+}
+
+.activity {
+	background: white;
+	margin-top: 30px;
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.activity h3 {
+	margin-bottom: 15px;
+}
+
+.activity ul {
+	padding-left: 20px;
+}
+
+.activity li {
+	margin: 10px 0;
+	color: #555;
+}
+
+.bottom {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 20px;
+	margin-top: 20px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+	.actions {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.bottom {
+		grid-template-columns: 1fr;
+	}
+
+	.sidebar{
+		left: -270px;
+	}
+
+	.main-content{
+		margin-left: 0;
+	}
+}</style>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="CRM.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Saarva Admin</span>
+    </div>
+
+    <!-- Profile -->
+    <div class="profile">
+
+        <div class="profile-icon">
+            S
+        </div>
+
+        <div class="profile-info">
+            <h3>Saarva Admin</h3>
+            <p>Control Panel</p>
+        </div>
+
+    </div>
+
+    <!-- Menu -->
+    <ul class="menu">
+
+        <li class="active">
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="kpi-intelligence.html">
+                <i class="fa-solid fa-chart-column"></i>
+                KPI Intelligence
+            </a>
+        </li>
+
+        <li>
+            <a href="user-management.html">
+                <i class="fa-solid fa-users"></i>
+                User Management
+            </a>
+        </li>
+
+        <li>
+            <a href="disposition-codes.html">
+                <i class="fa-solid fa-file-lines"></i>
+                Disposition Codes
+            </a>
+        </li>
+
+        <li>
+            <a href="pricing-config.html">
+                <i class="fa-solid fa-tags"></i>
+                Pricing Config
+            </a>
+        </li>
+
+        <li>
+            <a href="sample-report.html">
+                <i class="fa-solid fa-file"></i>
+                Sample Report
+            </a>
+        </li>
+
+        <li>
+            <a href="blocked-customer.html">
+                <i class="fa-solid fa-ban"></i>
+                Blocked Customer
+            </a>
+        </li>
+
+        <li>
+            <a href="lead-report.html">
+                <i class="fa-solid fa-upload"></i>
+                Lead Report
+            </a>
+        </li>
+
+        <li>
+            <a href="lead-sources.html">
+                <i class="fa-solid fa-database"></i>
+                Lead Sources
+            </a>
+        </li>
+
+        <li>
+            <a href="caller-replacement.html">
+                <i class="fa-solid fa-headset"></i>
+                Caller Replacement
+            </a>
+        </li>
+
+        <li>
+            <a href="area-management.html">
+                <i class="fa-solid fa-location-dot"></i>
+                Area Management
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="main-content">
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+            <p>Overview and quick actions for business team</p>
+        </div>
+
+        <div class="stats">
+
+            <div class="card">
+                <span style="font-size:40px;">👤</span>
+                <h2>156</h2>
+                <p><b>Total Leads Today</b></p>
+            </div>
+
+            <div class="card">
+                <span style="font-size:40px;">📞</span>
+                <h2>89</h2>
+                <p><b>New Leads Assigned</b></p>
+            </div>
+
+            <div class="card">
+                <span style="font-size:40px;">🔥</span>
+                <h2>23</h2>
+                <p><b>Hot Leads Generated</b></p>
+            </div>
+
+            <div class="card">
+                <span style="font-size:40px;">📅</span>
+                <h2>12</h2>
+                <p><b>Visits Scheduled</b></p>
+            </div>
+
+            <div class="card">
+                <span style="font-size:40px;">📈</span>
+                <h2>7</h2>
+                <p><b>Conversions</b></p>
+            </div>
+
+            <div class="card">
+                <span style="font-size:40px;">👥</span>
+                <h2>8</h2>
+                <p><b>Callers Active Today</b></p>
+            </div>
+
+            <div class="card">
+                <span style="font-size:40px;">🚫</span>
+                <h2>2</h2>
+                <p><b>Blocked Customers</b></p>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Quick Actions</h2>
+
+        <div class="actions">
+
+            <button class="btn"><b>Configure Disposition Codes</b></button>
+            <button class="btn"><b>Call Transfer Settings</b></button>
+            <button class="btn"><b>Upload Lead Excel</b></button>
+            <button class="btn"><b>Manage Users & Roles</b></button>
+            <button class="btn orange"><b>Replace a Telecaller</b></button>
+            <button class="btn"><b>Edit WhatsApp Templates</b></button>
+            <button class="btn"><b>Update Sample Reports</b></button>
+
+        </div>
+
+        <div class="activity">
+
+            <h3>Recent Activity</h3>
+
+            <ul>
+                <li>Pricing updated for PO service</li>
+                <li>New telecaller "Amit Patel"</li>
+                <li>WhatsApp template modified</li>
+                <li>150 leads imported from Excel</li>
+            </ul>
+
+        </div>
+
+        <div class="bottom">
+
+            <div class="activity">
+                <h3>System Updates</h3>
+                <p>Latest CRM updates and notifications will appear here.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="CRM.js"></script>
+</body>
+</html>
