@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Caller Replacement – Saarva Admin</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+
+</style>
+</head>
+<body>
+ 
+<!-- ── Sidebar ── -->
+<div class="sidebar" id="sidebar">
+  <div class="logo">
+    <i class="fa-solid fa-chart-line"></i>
+    <span>Saarva Admin</span>
+  </div>
+  <div class="profile">
+    <div class="profile-icon">S</div>
+    <div class="profile-info">
+      <h3>Saarva Admin</h3>
+      <p>Control Panel</p>
+    </div>
+  </div>
+  <ul class="menu">
+    <li><a href="dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a></li>
+    <li><a href="kpi-intelligence.html"><i class="fa-solid fa-chart-column"></i><span>KPI Intelligence</span></a></li>
+    <li><a href="user-management.html"><i class="fa-solid fa-users"></i><span>User Management</span></a></li>
+    <li><a href="disposition-codes.html"><i class="fa-solid fa-file-lines"></i><span>Disposition Codes</span></a></li>
+    <li><a href="pricing-config.html"><i class="fa-solid fa-tags"></i><span>Pricing Config</span></a></li>
+    <li><a href="sample-report.html"><i class="fa-solid fa-file"></i><span>Sample Report</span></a></li>
+    <li><a href="blocked-customer.html"><i class="fa-solid fa-ban"></i><span>Blocked Customer</span></a></li>
+    <li><a href="lead-report.html"><i class="fa-solid fa-upload"></i><span>Lead Report</span></a></li>
+    <li><a href="lead-sources.html"><i class="fa-solid fa-database"></i><span>Lead Sources</span></a></li>
+    <li class="active"><a href="caller-replacement.html"><i class="fa-solid fa-headset"></i><span>Caller Replacement</span></a></li>
+    <li><a href="area-management.html"><i class="fa-solid fa-location-dot"></i><span>Area Management</span></a></li>
+  </ul>
+</div>
+ 
+<!-- ── Main Content ── -->
+<div class="main-content" id="mainContent">
+  <div class="topbar">
+ 
+ 
+  </div>
+ 
+  <div class="page-body">
+    <div class="card">
+      <div class="title">Caller Replacement</div>
+      <div class="subtitle">Bulk reassign leads between callers</div>
+ 
+      <div class="row">
+        <div class="field">
+          <label>From Caller</label>
+          <select>
+            <option>Select caller</option>
+            <option>Sujata</option>
+            <option>Surekha</option>
+            <option>Amit</option>
+          </select>
+        </div>
+        <div class="arrow">➜</div>
+        <div class="field">
+          <label>To Caller</label>
+          <select>
+            <option>Select caller</option>
+            <option>Ramesh</option>
+            <option>Shivam</option>
+            <option>Khushi</option>
+          </select>
+        </div>
+      </div>
+ 
+      <div class="full field">
+        <label>Lead Type</label>
+        <select>
+          <option>All Leads</option>
+          <option>Hot Leads</option>
+          <option>Cold Leads</option>
+        </select>
+      </div>
+ 
+      <button class="btn">👤 Reassign Leads</button>
+    </div>
+  </div>
+</div>
+ 
+ 
+</body>
+</html>
