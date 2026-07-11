@@ -269,7 +269,14 @@
 {% block page_js %}
 <script>
   function handleLogout() {
-    fetch('/api/method/logout', { method: 'POST' })
+    var headers = {};
+    if (window.csrf_token) {
+      headers['X-Frappe-CSRF-Token'] = window.csrf_token;
+    }
+    fetch('/api/method/logout', { 
+      method: 'POST',
+      headers: headers
+    })
       .then(function() { window.location.href = '/login'; })
       .catch(function() { window.location.href = '/login'; });
   }

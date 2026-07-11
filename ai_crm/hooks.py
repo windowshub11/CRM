@@ -60,11 +60,10 @@ app_license = "mit"
 home_page = "login"
 
 # website user home page (by Role)
-# role_home_page = {
-# 	"System Manager": "crm-dashboard",
-# 	"Administrator": "crm-dashboard",
-# 	"All": "telecaller-performance"
-# }
+role_home_page = {
+	"CRM Telecaller": "telecaller-performance",
+	"CRM Admin": "crm-dashboard"
+}
 
 # Generators
 # ----------
@@ -198,7 +197,7 @@ home_page = "login"
 
 # Request Events
 # ----------------
-# before_request = ["ai_crm.middleware.check_guest_access"]
+#before_request = ["ai_crm.middleware.check_route_permission"]
 # after_request = ["ai_crm.utils.after_request"]
 
 # Job Events
@@ -248,4 +247,17 @@ home_page = "login"
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
+
+fixtures = [
+    "Role",
+    "Workspace",
+    "Custom Field",
+    "Property Setter",
+    "Client Script"
+]
+
+website_redirects = [
+    {"source": "/logout", "target": "/?cmd=web_logout"}
+]
+
 
