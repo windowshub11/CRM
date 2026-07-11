@@ -181,8 +181,13 @@ window.initiateCall = function (id, name) {
 
 // Handle logout
 window.handleLogout = function () {
+  var headers = {};
+  if (window.csrf_token) {
+    headers['X-Frappe-CSRF-Token'] = window.csrf_token;
+  }
   fetch('/api/method/logout', {
-    method: 'POST'
+    method: 'POST',
+    headers: headers
   })
   .then(function () {
     window.location.href = '/login';

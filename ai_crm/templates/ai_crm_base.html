@@ -24,6 +24,11 @@
 
   {%- block page_content -%}{%- endblock -%}
 
+  <!-- CSRF Token -->
+  <script>
+    window.csrf_token = "{{ frappe.session.csrf_token or '' }}";
+  </script>
+
   <!-- Common JS (always loaded) -->
   <script src="/assets/ai_crm/js/common.js"></script>
 

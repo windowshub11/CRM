@@ -1,123 +1,142 @@
 {
-    "name": "CRM Lead",
-    "doctype": "DocType",
-    "module": "ai_crm",
-    "custom": 0,
-    "editable_grid": 1,
-    "engine": "InnoDB",
-    "issingle": 0,
-    "istable": 0,
-    "permissions": [
-        {
-            "role": "System Manager",
-            "create": 1,
-            "delete": 1,
-            "email": 1,
-            "export": 1,
-            "import": 1,
-            "print": 1,
-            "read": 1,
-            "report": 1,
-            "share": 1,
-            "write": 1
-        },
-        {
-            "role": "CRM Admin",
-            "create": 1,
-            "delete": 1,
-            "email": 1,
-            "export": 1,
-            "import": 1,
-            "print": 1,
-            "read": 1,
-            "report": 1,
-            "share": 1,
-            "write": 1
-        },
-        {
-            "role": "CRM Telecaller",
-            "create": 1,
-            "delete": 0,
-            "email": 1,
-            "export": 0,
-            "import": 0,
-            "print": 1,
-            "read": 1,
-            "report": 1,
-            "share": 0,
-            "write": 1
-        }
-    ],
-    "fields": [
-        {
-            "fieldname": "naming_series",
-            "fieldtype": "Select",
-            "label": "Naming Series",
-            "options": "LEAD-.####\nLEAD-"
-        },
-        {
-            "fieldname": "lead_name",
-            "fieldtype": "Data",
-            "label": "Lead Name",
-            "reqd": 1
-        },
-        {
-            "fieldname": "phone",
-            "fieldtype": "Data",
-            "label": "Phone",
-            "reqd": 1
-        },
-        {
-            "fieldname": "area",
-            "fieldtype": "Data",
-            "label": "Area/Location"
-        },
-        {
-            "fieldname": "lead_source",
-            "fieldtype": "Select",
-            "label": "Lead Source",
-            "options": "Facebook\nJustDial\nWalk-in\nReferral\nGoogle\nOther"
-        },
-        {
-            "fieldname": "service",
-            "fieldtype": "Select",
-            "label": "Service",
-            "options": "Home Buying\nSeepage\nPDI\nOther"
-        },
-        {
-            "fieldname": "status",
-            "fieldtype": "Select",
-            "label": "Status",
-            "options": "New\nHot\nWarm\nCold\nConverted\nLost",
-            "default": "New"
-        },
-        {
-            "fieldname": "assigned_to",
-            "fieldtype": "Link",
-            "label": "Assigned To",
-            "options": "User"
-        },
-        {
-            "fieldname": "area_range_sqft",
-            "fieldtype": "Data",
-            "label": "Area Range (sqft)"
-        },
-        {
-            "fieldname": "budget",
-            "fieldtype": "Currency",
-            "label": "Budget"
-        },
-        {
-            "fieldname": "notes",
-            "fieldtype": "Small Text",
-            "label": "Notes"
-        },
-        {
-            "fieldname": "last_contacted",
-            "fieldtype": "Datetime",
-            "label": "Last Contacted"
-        }
-    ],
-    "autoname": "naming_series:",
-    "naming_series": "LEAD-"
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-07-04 16:55:02.725792",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "lead_name",
+  "phone",
+  "area",
+  "lead_source",
+  "service",
+  "status",
+  "assigned_to",
+  "area_range_sqft",
+  "budget",
+  "notes",
+  "last_contacted"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "LEAD-.####\nLEAD-"
+  },
+  {
+   "fieldname": "lead_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Lead Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Data",
+   "label": "Area/Location"
+  },
+  {
+   "fieldname": "lead_source",
+   "fieldtype": "Select",
+   "label": "Lead Source",
+   "options": "Facebook\nJustDial\nWalk-in\nReferral\nGoogle\nOther"
+  },
+  {
+   "fieldname": "service",
+   "fieldtype": "Select",
+   "label": "Service",
+   "options": "Home Buying\nSeepage\nPDI\nOther"
+  },
+  {
+   "default": "New",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "New\nHot\nWarm\nCold\nConverted\nLost"
+  },
+  {
+   "fieldname": "assigned_to",
+   "fieldtype": "Link",
+   "label": "Assigned To",
+   "options": "User"
+  },
+  {
+   "fieldname": "area_range_sqft",
+   "fieldtype": "Data",
+   "label": "Area Range (sqft)"
+  },
+  {
+   "fieldname": "budget",
+   "fieldtype": "Currency",
+   "label": "Budget"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "last_contacted",
+   "fieldtype": "Datetime",
+   "label": "Last Contacted"
+  }
+ ],
+ "links": [],
+ "modified": "2026-07-10 12:30:49.663413",
+ "modified_by": "Administrator",
+ "module": "ai_crm",
+ "name": "CRM Lead",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CRM Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CRM Telecaller",
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
 }

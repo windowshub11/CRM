@@ -1,12 +1,12 @@
 /* =====================================================
    LOGIN.JS – Saarva Admin CRM
-   Uses Frappe's real login API endpoint
+   Authenticates against Frappe and redirects dynamically
    ===================================================== */
 
 'use strict';
 
 /**
- * Handle login form submission — calls Frappe's login API
+ * Handle login form submission
  */
 function handleLogin(e) {
   e.preventDefault();
@@ -29,18 +29,19 @@ function handleLogin(e) {
   btn.disabled        = true;
   btnText.textContent = 'Signing in…';
 
-  // Resolve username → email for known users
-  var loginUsr = resolveUsername(username);
-
   // Call Frappe's built-in login API
+  var headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  };
+  if (window.csrf_token) {
+    headers['X-Frappe-CSRF-Token'] = window.csrf_token;
+  }
+
   fetch('/api/method/login', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'X-Frappe-CSRF-Token': 'fetch'
-    },
+    headers: headers,
     body: new URLSearchParams({
-      usr: loginUsr,
+      usr: username,
       pwd: password
     })
   })
@@ -53,90 +54,73 @@ function handleLogin(e) {
     console.log('Login API response:', result.status, result.data);
 
     if (result.status === 200) {
-      // ✅ Login success — redirect based on who logged in
-      var redirectTo = getRedirectTarget(username);
+      // ✅ Login success — Fetch the role-based redirect target from the server.
+      // Use GET to avoid CSRF validation issues with the newly created session.
+      fetch('/api/method/ai_crm.api.get_login_redirect', {
+        method: 'GET'
+      })
+      .then(function (res) {
+        if (!res.ok) {
+          throw new Error('HTTP error ' + res.status);
+        }
+        return res.json();
+      })
+      .then(function (response) {
+        var data = response.message || {};
+        var redirectTarget = data.redirect_target;
 
-      // Check if there's a redirect-to param in URL (from middleware)
-      var urlParams = new URLSearchParams(window.location.search);
-      var requestedPage = urlParams.get('redirect-to');
-
-      if (requestedPage && isAllowedForUser(username, requestedPage)) {
-        window.location.href = requestedPage;
-      } else {
-        window.location.href = redirectTo;
-      }
+        if (redirectTarget) {
+          window.location.href = redirectTarget;
+        } else {
+          errorEl.textContent = '❌ Redirect target not found.';
+          btn.disabled        = false;
+          btnText.textContent = 'Sign In';
+        }
+      })
+      .catch(function (err) {
+        console.error('Error fetching redirect target:', err);
+        errorEl.textContent = '❌ Failed to determine redirection path.';
+        btn.disabled        = false;
+        btnText.textContent = 'Sign In';
+      });
 
     } else {
-      // ❌ Wrong credentials
+      // ❌ Wrong credentials or other login error
       var msg = 'Invalid login credentials.';
       if (result.data) {
-        if (result.data.message)       msg = result.data.message;
-        else if (result.data.exc_type) msg = 'Incorrect password. Please try again.';
+        if (result.data.message) {
+          msg = result.data.message;
+        } else if (result.data._server_messages) {
+          try {
+            var serverMsgs = JSON.parse(result.data._server_messages);
+            var parsedMsgs = [];
+            for (var i = 0; i < serverMsgs.length; i++) {
+              var val = serverMsgs[i];
+              try {
+                parsedMsgs.push(JSON.parse(val).message);
+              } catch (e) {
+                parsedMsgs.push(val);
+              }
+            }
+            if (parsedMsgs.length > 0) {
+              msg = parsedMsgs.join(' ');
+            }
+          } catch (e) {
+            console.error('Error parsing server messages:', e);
+          }
+        }
       }
       errorEl.textContent = '❌ ' + msg;
       btn.disabled        = false;
       btnText.textContent = 'Sign In';
     }
   })
-  .catch(function () {
+  .catch(function (err) {
+    console.error('Network error during login:', err);
     errorEl.textContent = '❌ Network error. Please try again.';
     btn.disabled        = false;
     btnText.textContent = 'Sign In';
   });
-}
-
-/**
- * Maps short usernames to their Frappe email
- * Frappe login API needs the email, not the username
- */
-function resolveUsername(username) {
-  var lower = username.toLowerCase();
-  var map = {
-    'tellecaller': 'tellecaller@saarva.com',
-    'administrator': 'Administrator'
-  };
-  return map[lower] || username;
-}
-
-/**
- * Returns the home page for a given username
- */
-function getRedirectTarget(username) {
-  var lower = username.toLowerCase();
-
-  // Telecaller users → telecaller performance (default home)
-  if (lower === 'tellecaller' || lower === 'tellecaller@saarva.com') {
-    return '/telecaller-performance';
-  }
-
-  // Admin / Administrator → main dashboard
-  return '/crm-dashboard';
-}
-
-/**
- * Check if a user is allowed to access a certain page
- * Prevents telecallers from being redirected to admin pages
- */
-function isAllowedForUser(username, page) {
-  var lower = username.toLowerCase();
-  var isTelecaller = (lower === 'tellecaller' || lower === 'tellecaller@saarva.com');
-
-  if (isTelecaller) {
-    // Telecallers can access all telecaller portal routes
-    var telecallerPages = [
-      '/telecaller-home',
-      '/telecaller-performance',
-      '/telecaller-actions',
-      '/telecaller-fresh',
-      '/telecaller-call'
-    ];
-    // Strip trailing slashes or query params if any
-    var cleanPage = page.split('?')[0].replace(/\/+$/, '');
-    return telecallerPages.indexOf(cleanPage) !== -1;
-  }
-
-  // Admin can go anywhere
-  return true;
 }
 
 /**
