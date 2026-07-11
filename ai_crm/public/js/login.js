@@ -138,3 +138,8 @@ function togglePassword() {
     icon.classList.replace('fa-eye-slash', 'fa-eye');
   }
 }
+
+// Attach to window to make available globally
+window.handleLogin = handleLogin;
+window.togglePassword = togglePassword;
+
