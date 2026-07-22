@@ -1,0 +1,11 @@
+.timeline-feed { background: #fff; border-radius: 10px; padding: 16px; border: 1px solid var(--color-border); }
+.timeline-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.timeline-filter { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--color-border); }
+.timeline-list { display: flex; flex-direction: column; gap: 14px; }
+.timeline-item { display: flex; gap: 12px; padding: 10px; border-radius: 8px; }
+.timeline-item.pinned { background: #fff8e1; }
+.timeline-icon { font-size: 18px; }
+.timeline-type-label { font-size: 11px; color: var(--color-primary-light); font-weight: 600; text-transform: uppercase; }
+.timeline-summary { font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.pin-badge { font-size: 11px; color: #b8860b; }
+.timeline-meta { font-size: 12px; color: var(--color-text-muted); margin-top: 2px; }

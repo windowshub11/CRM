@@ -1,0 +1,15 @@
+.duplicate-warning-panel { background: #fff5f5; border: 1px solid #ffcccc; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.dwp-header { font-weight: 600; color: var(--color-danger); margin-bottom: 14px; display: flex; justify-content: space-between; }
+.dwp-score { font-size: 13px; background: #fff; padding: 2px 8px; border-radius: 999px; }
+.dwp-compare { display: flex; gap: 16px; margin-bottom: 12px; }
+.dwp-col { flex: 1; background: #fff; border-radius: 8px; padding: 10px; }
+.dwp-col-label { font-weight: 600; font-size: 12px; color: var(--color-text-muted); margin-bottom: 8px; }
+.dwp-field { display: flex; flex-direction: column; padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+.dwp-field-name { font-size: 11px; color: #999; text-transform: capitalize; }
+.dwp-radio { font-size: 13px; display: flex; align-items: center; gap: 6px; }
+.dwp-linked { font-size: 12px; color: #666; margin-bottom: 12px; }
+.dwp-actions { display: flex; gap: 8px; }
+.dwp-btn { padding: 6px 14px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; }
+.dwp-btn.merge { background: var(--color-primary-light); color: #fff; }
+.dwp-btn.separate { background: #eee; }
+.dwp-btn.ignore, .dwp-btn.cancel { background: transparent; color: #999; }
